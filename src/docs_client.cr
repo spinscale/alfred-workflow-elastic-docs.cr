@@ -60,7 +60,7 @@ class DocsClient
                 json.object do
                   json.field "title", hit["title"]["raw"].as_s
                   json.field "subtitle", hit["product_name"]["raw"].as_s
-                  json.field "url", hit["url"]["raw"].as_s
+                  json.field "arg", hit["url"]["raw"].as_s
                   product_name = hit["product_name"]["raw"].as_s.downcase
                   product = @@ICONS.has_key?(product_name) ? @@ICONS[product_name] : @@ICONS["elasticsearch"]
                   icon = Dir.current + product
@@ -75,18 +75,6 @@ class DocsClient
           end
         end
       end
-      #results = json["results"].as_a.map { |hit|
-      #  product_name = hit["product_name"]["raw"].as_s.downcase
-      #  product = @@ICONS.has_key?(product_name) ? @@ICONS[product_name] : @@ICONS["elasticsearch"]
-
-      #  url = hit["url"]["raw"].as_s
-      #  title = hit["title"]["raw"].as_s
-      #  subtitle = hit["product_name"]["raw"].as_s
-      #  icon = Dir.current + product
-      #  JSON.parse %Q({ "title" : "#{title}", "subtitle": "#{subtitle}", "arg": "#{url}", "icon": { "path" : "#{icon}"}})
-      #}
-      #items = { "items" => results }
-      #JSON.parse items
     end
   end
 

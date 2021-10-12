@@ -31,6 +31,8 @@ describe DocsClient do
 
     resp = JSON.parse client.query({ "query" => "match query", "version" : "7.15", "product" => "Elasticsearch"})
     resp["items"].size.should eq 2
+    resp["items"][0]["title"].as_s.should eq "Open"
+    resp["items"][0]["arg"].as_s.should eq "http://localhost:8000/guide/en/elasticsearch/client/curator/4.0/open.html"
   end
 
   it "should return empty search response" do
