@@ -26,10 +26,10 @@ describe DocsClient do
 
   it "should query" do
     WebMock.stub(:post, "https://host-nm1h2z.api.swiftype.com/api/as/v1/engines/elastic-en-us/search")
-      .with(body: "{\"query\":\"match query\",\"page\":{\"size\":10},\"search_fields\":{\"title\":{\"weight\":3},\"body\":{}},\"result_fields\":{\"title\":{\"raw\":{}},\"url\":{\"raw\":{}},\"product_name\":{\"raw\":{}}},\"filters\":{\"all\":[{\"website_area\":[\"documentation\"]},{\"product_version\":\"7.15\"},{\"product_name\":\"Elasticsearch\"}]}}", headers: {"Authorization" => "Bearer search-yq8eq2orbgnmq1jjjfw4hocv"})
+      .with(body: "{\"query\":\"match query\",\"page\":{\"size\":10},\"search_fields\":{\"title\":{\"weight\":3},\"body\":{}},\"result_fields\":{\"title\":{\"raw\":{}},\"url\":{\"raw\":{}},\"product_name\":{\"raw\":{}}},\"filters\":{\"all\":[{\"website_area\":[\"documentation\"]},{\"product_version\":\"7.16\"},{\"product_name\":\"Elasticsearch\"}]}}", headers: {"Authorization" => "Bearer search-yq8eq2orbgnmq1jjjfw4hocv"})
       .to_return(status: 200, body: json)
 
-    resp = JSON.parse client.query({ "query" => "match query", "version" : "7.15", "product" => "Elasticsearch"})
+    resp = JSON.parse client.query({ "query" => "match query", "version" => "7.16", "product" => "Elasticsearch"})
     resp["items"].size.should eq 2
     resp["items"][0]["title"].as_s.should eq "Open"
     resp["items"][0]["arg"].as_s.should eq "http://localhost:8000/guide/en/elasticsearch/client/curator/4.0/open.html"
@@ -39,7 +39,7 @@ describe DocsClient do
     WebMock.stub(:post, "https://host-nm1h2z.api.swiftype.com/api/as/v1/engines/elastic-en-us/search").
       to_return(status: 200, body: %Q({"meta": { "page": { "total_results": 0 } }}))
 
-    resp = JSON.parse client.query({ "query" => "match query", "version" : "7.15", "product" => "Elasticsearch"})
+    resp = JSON.parse client.query({ "query" => "match query", "version" => "7.16", "product" => "Elasticsearch"})
     resp.size.should eq 1
     resp["items"][0]["title"].as_s.should eq "No results found"
   end
