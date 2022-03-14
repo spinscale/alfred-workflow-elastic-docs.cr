@@ -1,6 +1,6 @@
 class Parser
 
-  @@CURRENT_VERSION = "8.0"
+  @@CURRENT_VERSION = "8.1"
 
   @@PRODUCTS = {
     # beats
