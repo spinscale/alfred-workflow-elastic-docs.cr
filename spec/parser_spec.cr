@@ -6,12 +6,12 @@ describe Parser do
   parser = Parser.new
 
   it "should parse" do
-    parser.parse("foo").should eq({ "query" => "foo", "product" => nil, "version" => "8.2" })
+    parser.parse("foo").should eq({ "query" => "foo", "product" => nil, "version" => "8.3" })
   end
 
   it "should parse products" do
-    parser.parse("a foo bar").should eq({ "query" => "foo bar", "product" => "APM", "version" => "8.2" })
-    parser.parse("e foo").should eq({ "query" => "foo", "product" => "Elasticsearch", "version" => "8.2" })
+    parser.parse("a foo bar").should eq({ "query" => "foo bar", "product" => "APM", "version" => "8.3" })
+    parser.parse("e foo").should eq({ "query" => "foo", "product" => "Elasticsearch", "version" => "8.3" })
   end
 
   it "should parse products and versions" do
